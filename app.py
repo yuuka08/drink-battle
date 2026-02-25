@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 import sqlite3
+import os
 
 app = Flask(__name__)
 app.secret_key = "secret"
@@ -21,14 +22,9 @@ def init_db():
 
 init_db()
 
-init_db()
-
 @app.route("/test")
 def test():
     return "HELLO"
-
-@app.route("/", methods=["GET","POST"])
-def start():
 
 @app.route("/", methods=["GET","POST"])
 def start():
@@ -74,8 +70,6 @@ def add(amount):
 
     return redirect("/game")
 
-
-import os
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
