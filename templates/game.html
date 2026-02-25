@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Game</title>
+
+<style>
+.safe { background:#a8f0c6; }
+.warning { background:#ffd166; }
+.danger { background:#ff6b6b; }
+
+.card {
+    margin:20px;
+    padding:20px;
+    border-radius:20px;
+    text-align:center;
+}
+</style>
+
+<script>
+setInterval(function(){
+    location.reload();
+}, 2000);
+</script>
+
+</head>
+
+<body style="font-family:sans-serif; text-align:center;">
+
+<h1>🏆 ランキング</h1>
+
+<a href="/add/14"><button>ビール</button></a>
+<a href="/add/10"><button>ハイボール</button></a>
+<a href="/add/20"><button>テキーラ</button></a>
+
+<hr>
+
+{% for p in players %}
+
+{% set status = "safe" %}
+{% if p[3] >= 40 %}
+    {% set status = "danger" %}
+{% elif p[3] >= 20 %}
+    {% set status = "warning" %}
+{% endif %}
+
+<div class="card {{ status }}">
+    <h2>{{ p[1] }}</h2>
+    <h3>{{ "%.1f"|format(p[3]) }} g</h3>
+</div>
+
+{% endfor %}
+
+</body>
+</html>
