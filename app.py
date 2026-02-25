@@ -21,6 +21,15 @@ def init_db():
 
 init_db()
 
+init_db()
+
+@app.route("/test")
+def test():
+    return "HELLO"
+
+@app.route("/", methods=["GET","POST"])
+def start():
+
 @app.route("/", methods=["GET","POST"])
 def start():
     if request.method == "POST":
@@ -66,5 +75,8 @@ def add(amount):
     return redirect("/game")
 
 
+import os
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
